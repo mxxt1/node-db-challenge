@@ -13,7 +13,13 @@ module.exports = {
 //get projects: 
 
 function getProjects(){
-    return db('projects');
+    return db('projects')
+    .then(projects => {
+        projects.forEach(project => {
+            project.completed === 1 ? project.completed = 'true' : project.completed = 'false';
+        });
+        return projects;
+    });
 }
 
 //add project
@@ -26,7 +32,13 @@ function addProject(project){
 //get tasks
 
 function getTasks(){
-    return db('tasks');
+    return db('tasks')
+    .then( tasks => {
+        tasks.forEach(task => {
+            task.completed === 1 ? task.completed = 'true' : task.completed = 'false';
+        });
+        return tasks;
+    });
 }
 
 //add task
