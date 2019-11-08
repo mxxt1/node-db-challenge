@@ -12,7 +12,7 @@ module.exports = {
       directory: './data/migrations'
     },
     seeds: {
-      director: './data/seeds'
+      directory: './data/seeds'
     },
   },
 
