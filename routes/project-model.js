@@ -33,11 +33,18 @@ function addProject(project){
 
 function getTasks(){
     return db('tasks')
+    .select(
+        'tasks.*',
+        'projects.name', 
+        'projects.description'
+        )
+    .from('tasks')
+    .join('projects', 'projects.id','tasks.project_id')
     .then( tasks => {
         tasks.forEach(task => {
             task.completed === 1 ? task.completed = 'true' : task.completed = 'false';
         });
-        return tasks;
+    return tasks;
     });
 }
 
